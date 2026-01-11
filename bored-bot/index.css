@@ -12,7 +12,13 @@ body {
     color: white;
 }
 
+h1 {
+    margin-top: auto;
+}
+
 button {
+    margin-bottom: auto;
+    margin-top: 7vh;
     cursor: pointer;
     height: 100px;
     width: 100px;
