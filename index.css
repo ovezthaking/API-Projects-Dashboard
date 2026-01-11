@@ -1,0 +1,36 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: radial-gradient(circle,rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+body > ul {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.projects-list {
+    margin-top: 20vh;
+}
+
+.projects-list > li {    
+    margin-bottom: 50px;  
+    font-size: 1.7rem;
+    border: 1px solid rgba(0, 0, 0, 0.37);
+    background-color: rgba(0, 0, 0, 0.37);
+    padding: 2vh 5vh;
+    border-radius: 10px;
+}
+
+.projects-list > li > a {
+    text-decoration: none;
+    color: whitesmoke;
+}
