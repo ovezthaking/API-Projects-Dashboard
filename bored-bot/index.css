@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Mulish", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #301c3d;
+    background: linear-gradient(348deg,rgba(48, 28, 61, 1) 0%, rgba(115, 50, 50, 1) 50%, rgba(66, 46, 17, 1) 100%);
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+}
+
+button {
+    cursor: pointer;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    background-color:greenyellow;
+    border: 1px solid darkgreen;
+}
