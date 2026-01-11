@@ -1,4 +1,9 @@
 body {
+    margin:0;
+    padding: 0;
+}
+
+main {
     margin: 0;
     padding: 0;
     font-family: "Mulish", sans-serif;
@@ -28,11 +33,11 @@ button {
     border: 1px solid darkgreen;
 }
 
-.activity-shown-h4 {
+.activity-shown-p {
     font-size: 1.1em;
 }
 
-body.activity-shown-body {
+.activity-shown-body {
     background: #EB5757;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #000000, #EB5757);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #000000, #EB5757); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */

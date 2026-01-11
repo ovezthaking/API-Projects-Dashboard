@@ -1,4 +1,4 @@
-const activityText = document.querySelector('h4')
+const activityText = document.querySelector('p')
 const button = document.querySelector('button')
 
 
@@ -7,8 +7,8 @@ button.addEventListener('click', () => {
         .then(response => response.json())
         .then(data => {
             activityText.textContent = data.activity
-            activityText.classList.add('activity-shown-h4')
+            activityText.classList.add('activity-shown-p')
             document.querySelector('h1').textContent = '💡🧠💡🧠💡'
-            document.querySelector('body').classList.add('activity-shown-body')
+            document.querySelector('main').classList.add('activity-shown-body')
         })
 })
