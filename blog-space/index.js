@@ -1,5 +1,28 @@
 const postsContainer = document.getElementById('posts-container')
 
+let postsArray = []
+
+
+function renderPosts() {
+    let html = ''
+    postsArray.forEach(post => {
+        html += `
+            <div id='post'>
+                <h3>${post.title}</h3>
+                <p>${post.body}</p>
+                <hr />
+            </div>
+        `
+    })
+    postsContainer.innerHTML = html
+}
+
+fetch('https://apis.scrimba.com/jsonplaceholder/posts')
+    .then(response => response.json())
+    .then(data => {
+        postsArray = data.slice(0,5)
+        renderPosts()
+    })
 
 document.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -20,15 +43,8 @@ document.addEventListener('submit', (e) => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data)
-                        postsContainer.innerHTML = `
-                            <div id='post'>
-                                <h3>${data.title}</h3>
-                                <p>${data.body}</p>
-                                <hr />
-                                ${document.getElementById('posts-container').innerHTML}
-                            </div>
-                        `
+                        postsArray.unshift(data)
+                        renderPosts()
                     })
                 
                 document.getElementById('post-title').value = ''
@@ -37,16 +53,4 @@ document.addEventListener('submit', (e) => {
     }
 })
 
-fetch('https://apis.scrimba.com/jsonplaceholder/posts')
-    .then(response => response.json())
-    .then(data => {
-        data.slice(0,5).forEach(post => {
-            postsContainer.innerHTML += `
-                <div id='post'>
-                    <h3>${post.title}</h3>
-                    <p>${post.body}</p>
-                    <hr />
-                </div>
-            `
-        });
-    })
+
