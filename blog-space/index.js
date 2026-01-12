@@ -1,4 +1,6 @@
 const postsContainer = document.getElementById('posts-container')
+const titleInput = document.getElementById('post-title')
+const bodyInput = document.getElementById('post-body')
 
 let postsArray = []
 
@@ -28,11 +30,11 @@ document.addEventListener('submit', (e) => {
     e.preventDefault()
     if (e.target.id == document.querySelector('button').id){
         if (
-            document.getElementById('post-title').value &&
-            document.getElementById('post-body').value) {
+            titleInput.value &&
+            bodyInput.value) {
                 const post = {
-                    title: document.getElementById('post-title').value,
-                    body: document.getElementById('post-body').value
+                    title: titleInput.value,
+                    body: bodyInput.value
                 }
                 fetch('https://apis.scrimba.com/jsonplaceholder/posts',{
                     method: 'POST',
@@ -45,8 +47,8 @@ document.addEventListener('submit', (e) => {
                     .then(data => {
                         postsArray.unshift(data)
                         renderPosts()
-                        document.getElementById('post-title').value = ''
-                        document.getElementById('post-body').value = ''
+                        titleInput.value = ''
+                        bodyInput.value = ''
                     })
             }
     }
