@@ -15,12 +15,57 @@ nav{
     background-color: rgb(129, 37, 195);
 }
 
+nav > a {
+    margin: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
 nav > h3 {
     margin: 0;
 }
 
+form {
+    padding: 7em 5em 2em;
+    display: flex;
+    align-items: start;
+    margin: auto;
+    flex-direction: column;
+    background-color: rgba(174, 101, 227, 0.186);
+}
+
+form > input, form > textarea, form > button {
+    margin-bottom: 2vh;
+    width: 53vh;
+    max-width: 90%;
+    border: 1px solid indigo;
+    
+}
+
+form > input, form > textarea{
+    background-color: rgba(195, 132, 239, 0.148);
+}
+
+form > input {
+    width: 53vh;
+    height: 4vh;
+}
+
+form > textarea {
+    height: 10vh;
+}
+
+form > button {
+    border: none;
+    padding: 2vh 0;
+    margin-left: 0.5vh;
+    margin-top: 1vh;
+    background-color: rgba(194, 132, 239, 0.43);
+    cursor: pointer;
+}
+
 #posts-container {
-    padding: 3.5em;
+    padding: 3.5em 2em;
 }
 
 #post {

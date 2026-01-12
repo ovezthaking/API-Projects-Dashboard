@@ -11,11 +11,16 @@
 </head>
 <body>
     <nav>
-        <h3>🪶 BlogSpace 🪶</h3>
+        <a href="/blog-space/index.html"><h3>🪶 BlogSpace 🪶</h3></a>
     </nav>
-    <div id="posts-container">
-
-    </div>
+    <form>
+        <label for="post-title">Post title:</label>
+        <input type="text" name="post-title" id="post-title">
+        <label for="post-body">Post content:</label>
+        <textarea name="post-body" id="post-body"></textarea>
+        <button type="submit">Post</button>
+    </form>
+    <div id="posts-container"></div>
     <script src="index.js"></script>
 </body>
 </html>
