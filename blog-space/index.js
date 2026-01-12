@@ -45,10 +45,9 @@ document.addEventListener('submit', (e) => {
                     .then(data => {
                         postsArray.unshift(data)
                         renderPosts()
+                        document.getElementById('post-title').value = ''
+                        document.getElementById('post-body').value = ''
                     })
-                
-                document.getElementById('post-title').value = ''
-                document.getElementById('post-body').value = ''
             }
     }
 })
