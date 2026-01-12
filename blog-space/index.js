@@ -6,8 +6,11 @@ fetch('https://apis.scrimba.com/jsonplaceholder/posts')
     .then(data => {
         data.slice(0,5).forEach(post => {
             postsContainer.innerHTML += `
-                <h2>${post.title}</h2>
-                <p>${post.body}</p>
+                <div id='post'>
+                    <h3>${post.title}</h3>
+                    <p>${post.body}</p>
+                    <hr />
+                </div>
             `
         });
     })

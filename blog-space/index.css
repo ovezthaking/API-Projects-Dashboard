@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+}
+
+nav{
+    color: white;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 1rem;
+    border-bottom: 4px solid indigo;
+    padding: 2vh 1vh 2vh 4vh;
+    position: fixed;
+    background-color: rgb(129, 37, 195);
+}
+
+nav > h3 {
+    margin: 0;
+}
+
+#posts-container {
+    padding: 3.5em;
+}
+
+#post {
+    padding-top: 2vh;
+}
