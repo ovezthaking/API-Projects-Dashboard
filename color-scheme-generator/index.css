@@ -1,0 +1,43 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #1F2937;
+    color: white;
+}
+
+header {
+    padding: 3vh;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+}
+
+form > input, form > select, form > button {
+    margin: 0 0.8vh;
+    height: 5vh;
+    border: 1px gray solid;
+    border-radius: 5px;
+    color: #D5D4D8;
+}
+
+form > select {
+    padding-right: 9vh;
+    background-color: #1F2937;
+}
+
+form > button {
+    padding: 0 3vh;
+    background-color: #3D4B60;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.color-container {
+    height: 80vh;
+    text-align: center;
+}
