@@ -41,3 +41,12 @@ main {
     height: 80vh;
     text-align: center;
 }
+
+main button {
+    border: none;
+    font-family: inherit;
+    background-color: inherit;
+    font-size: inherit;
+    color: white;
+    margin-top: 2vh;
+}

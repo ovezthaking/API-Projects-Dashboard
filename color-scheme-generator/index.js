@@ -12,11 +12,18 @@ function fetchApi(hexValue){
                 const div = document.createElement('div')
                 div.style.backgroundColor = `${color.hex.value}`
                 div.style.height = '100%'
-                const p = document.createElement('p')
-                p.textContent = color.hex.value
+                const btn = document.createElement('button')
+                btn.textContent = color.hex.value
+                btn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(color.hex.value)
+                    btn.textContent = 'Copied!'
+                    setTimeout(() => {
+                        btn.textContent = color.hex.value
+                    }, 1000)
+                })
                 main.append(container)
                 container.append(div)
-                container.append(p)
+                container.append(btn)
             })
         })
 }
