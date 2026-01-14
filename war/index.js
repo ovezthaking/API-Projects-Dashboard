@@ -13,6 +13,10 @@ const draw = () => {
         .then(cards => {
             console.log(cards[0])
             console.log(cards[1])
+            document.getElementById('cards').innerHTML = `
+                <img src="${cards[0].image}" alt="card 1 image">
+                <img src="${cards[1].image}" alt="card 2 image">
+            `
         })
 }
 
