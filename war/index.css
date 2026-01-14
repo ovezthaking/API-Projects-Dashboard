@@ -1,0 +1,38 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background: url(img/table.png) greenyellow;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: "Play", sans-serif;
+}
+
+#draw-cards, #new-deck {
+    background-color: rgb(252, 219, 75);
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+#new-deck{
+    margin: 1vh 0;
+    padding: 2vh;
+}
+
+#draw-cards {
+    font-size: 1.25rem;
+    font-weight: 600;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 2.5vh 0;
+}
+
+#cards {
+    width: 100%;
+    margin: 7% 0 0 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
