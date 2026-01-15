@@ -5,6 +5,17 @@ html, body {
     background-size: cover;
     background-repeat: no-repeat;
     font-family: "Play", sans-serif;
+    color: whitesmoke;
+    text-shadow: 1px 1px black;
+}
+
+.upper-container {
+    display: flex;
+    align-items: center;
+}
+
+#remaining-cards {
+    margin-left: 2em;
 }
 
 #draw-cards, #new-deck {

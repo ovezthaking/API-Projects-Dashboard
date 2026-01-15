@@ -1,11 +1,15 @@
 let deckId
 const cardsContainer = document.getElementById('cards')
-const scoreHeader = document.getElementById('score')
+const scoreHeader = document.getElementById('winner-text')
+const remainingCards = document.getElementById('remaining-cards')
 
 const handleClick = () => {
     fetch('https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/')
         .then(res => res.json())
-        .then(data => deckId = data.deck_id)
+        .then(data => {
+            remainingCards.innerText = `Remaining cards: ${data.remaining}`
+            return deckId = data.deck_id
+        })
 }
 
 const winnerCard = (card1, card2) => {
@@ -23,7 +27,10 @@ const winnerCard = (card1, card2) => {
 const draw = () => {
     fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
         .then(res => res.json())
-        .then(data => data.cards)
+        .then(data => {
+            remainingCards.innerText = `Remaining cards: ${data.remaining}`
+            return data.cards
+        })
         .then(cards => {
             cardsContainer.children[0].innerHTML = `
                 <img src="${cards[0].image}" alt="card 1 image" class="card">
@@ -32,6 +39,7 @@ const draw = () => {
                 <img src="${cards[1].image}" alt="card 2 image" class="card">
             `
             winnerCard(cards[0], cards[1])
+            
         })
 }
 
@@ -40,4 +48,4 @@ document.getElementById('new-deck').addEventListener('click', handleClick)
 document.getElementById('draw-cards').addEventListener('click', draw)
 
 handleClick()
-setTimeout(draw, 500)
+// setTimeout(draw, 500)
