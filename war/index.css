@@ -68,4 +68,9 @@ img.card {
 #draw-cards:disabled {
     background-color: grey;
     color: thistle;
+    cursor: not-allowed;
+}
+
+h3 {
+    text-align: center;
 }
