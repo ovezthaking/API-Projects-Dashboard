@@ -11,13 +11,13 @@ let computerScore = 0
 let playerScore = 0
 let finished = false
 
-const handleClick = () => {
-    fetch('https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/')
-        .then(res => res.json())
-        .then(data => {
-            remainingCards.innerText = `Remaining cards: ${data.remaining}`
-            return deckId = data.deck_id
-        })
+const handleClick = async () => {
+    const res = await fetch('https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/')
+    const data = await res.json()
+        
+    remainingCards.innerText = `Remaining cards: ${data.remaining}`
+    deckId = data.deck_id
+       
     computerScore = 0
     playerScore = 0
     computerScoreText.textContent = `Computer score: ${computerScore}`
@@ -47,36 +47,33 @@ const winnerCard = (card1, card2) => {
     else scoreHeader.innerText = 'War!'
 }
 
-const draw = () => {
-    fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
-        .then(res => res.json())
-        .then(data => {
-            remainingCards.innerText = `Remaining cards: ${data.remaining}`
-            if (data.remaining <= 0){
-                drawCardBtn.disabled = true
-                finished = true
-                if (computerScore > playerScore){
-                    scoreHeader.innerText = 'Computer wins the entire game!!!'
-                }
-                else {
-                    scoreHeader.innerText = 'You win the entire game!!!'
-                }
-            }
-            return data.cards
-        })
-        .then(cards => {
-            cardsContainer.children[0].innerHTML = `
-                <img src="${cards[0].image}" alt="card 1 image" class="card">
-            `
-            cardsContainer.children[1].innerHTML = `
-                <img src="${cards[1].image}" alt="card 2 image" class="card">
-            `
-            if (!finished){
-                winnerCard(cards[0], cards[1])
-            }
-            
-            
-        })
+const draw = async () => {
+    const res = await fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
+    const data = await res.json()
+
+    remainingCards.innerText = `Remaining cards: ${data.remaining}`
+    if (data.remaining <= 0){
+        drawCardBtn.disabled = true
+        finished = true
+        if (computerScore > playerScore){
+            scoreHeader.innerText = 'Computer wins the entire game!!!'
+        }
+        else {
+            scoreHeader.innerText = 'You win the entire game!!!'
+        }
+    }
+        
+    const cards = data.cards
+    
+    cardsContainer.children[0].innerHTML = `
+        <img src="${cards[0].image}" alt="card 1 image" class="card">
+    `
+    cardsContainer.children[1].innerHTML = `
+        <img src="${cards[1].image}" alt="card 2 image" class="card">
+    `
+    if (!finished){
+        winnerCard(cards[0], cards[1])
+    }
 }
 
 newDeckBtn.addEventListener('click', handleClick)
