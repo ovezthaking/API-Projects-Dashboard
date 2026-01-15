@@ -9,6 +9,7 @@ const playerScoreText = document.getElementById('player-score')
 
 let computerScore = 0
 let playerScore = 0
+let finished = false
 
 const handleClick = () => {
     fetch('https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/')
@@ -17,7 +18,12 @@ const handleClick = () => {
             remainingCards.innerText = `Remaining cards: ${data.remaining}`
             return deckId = data.deck_id
         })
-    
+    computerScore = 0
+    playerScore = 0
+    computerScoreText.textContent = `Computer score: ${computerScore}`
+    playerScoreText.textContent = `My score: ${playerScore}`
+    finished = false
+    scoreHeader.innerText = 'Game of War'
     drawCardBtn.disabled = false
 }
 
@@ -48,6 +54,13 @@ const draw = () => {
             remainingCards.innerText = `Remaining cards: ${data.remaining}`
             if (data.remaining <= 0){
                 drawCardBtn.disabled = true
+                finished = true
+                if (computerScore > playerScore){
+                    scoreHeader.innerText = 'Computer wins the entire game!!!'
+                }
+                else {
+                    scoreHeader.innerText = 'You win the entire game!!!'
+                }
             }
             return data.cards
         })
@@ -58,7 +71,10 @@ const draw = () => {
             cardsContainer.children[1].innerHTML = `
                 <img src="${cards[1].image}" alt="card 2 image" class="card">
             `
-            winnerCard(cards[0], cards[1])
+            if (!finished){
+                winnerCard(cards[0], cards[1])
+            }
+            
             
         })
 }
