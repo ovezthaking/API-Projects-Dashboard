@@ -1,4 +1,6 @@
 let deckId
+const newDeckBtn = document.getElementById("new-deck")
+const drawCardBtn = document.getElementById("draw-cards")
 const cardsContainer = document.getElementById('cards')
 const scoreHeader = document.getElementById('winner-text')
 const remainingCards = document.getElementById('remaining-cards')
@@ -10,6 +12,8 @@ const handleClick = () => {
             remainingCards.innerText = `Remaining cards: ${data.remaining}`
             return deckId = data.deck_id
         })
+    
+    drawCardBtn.disabled = false
 }
 
 const winnerCard = (card1, card2) => {
@@ -29,6 +33,9 @@ const draw = () => {
         .then(res => res.json())
         .then(data => {
             remainingCards.innerText = `Remaining cards: ${data.remaining}`
+            if (data.remaining <= 0){
+                drawCardBtn.disabled = true
+            }
             return data.cards
         })
         .then(cards => {
@@ -43,7 +50,7 @@ const draw = () => {
         })
 }
 
-document.getElementById('new-deck').addEventListener('click', handleClick)
+newDeckBtn.addEventListener('click', handleClick)
 
 document.getElementById('draw-cards').addEventListener('click', draw)
 
