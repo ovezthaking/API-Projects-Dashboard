@@ -1,4 +1,5 @@
 const apiKey = '538738c0'
+let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
 
 const fetchSearch = async (value) => {
     try {
@@ -25,6 +26,21 @@ const fetchSearch = async (value) => {
 }
 
 
+const toggleWatchList = async (id) => {
+    const res = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${id}&plot=short`)
+    const moviesData = await res.json()
+
+    if (watchlist.find(movie => movie.imdbID === id)){
+        watchlist = watchlist.filter(movie => movie.imdbID !== id)
+    } 
+    else {
+        watchlist.push(moviesData)
+    }
+    localStorage.setItem('watchlist', JSON.stringify(watchlist))
+}
+
+
+
 document.addEventListener('submit', async (e) => {
     const content = document.querySelector('.content')
     e.preventDefault()
@@ -37,12 +53,12 @@ document.addEventListener('submit', async (e) => {
     }
     else {
         content.innerHTML = ''
-
+        console.log(data)
         data.forEach(movie => {
-            const { Poster, Title, imdbRating, Runtime, Genre, Plot } = movie
+            const { Poster, Title, imdbRating, Runtime, Genre, Plot, imdbID } = movie
             content.innerHTML += `
               <div class="results">
-                <img src="${Poster}" alt="">
+                <img src="${Poster}" alt="${Title} poster">
                 <div>
                     <div class="movie-header">
                         <h2>${Title}</h2>
@@ -51,7 +67,11 @@ document.addEventListener('submit', async (e) => {
                     <div class="movie-subheader">
                         <p>${Runtime}</p>
                         <p>${Genre}</p>
-                        <a href="">+ Watchlist </a>
+                        
+                        <button class="toggle-btn" data-imdb-id="${imdbID}">
+                            ${watchlist.find(movie => movie.imdbID === imdbID) ? '<img src="img/remove.png" alt="Toggle watchlist icon">' : '<img src="img/add.png" alt="Toggle watchlist icon">' }
+                            Watchlist 
+                        </button>
                     </div>
                     <div class="movie-plot">
                         <p> ${Plot} </p>
@@ -64,3 +84,10 @@ document.addEventListener('submit', async (e) => {
     }
 })
 
+document.addEventListener('click', (e) => {
+    const toggleBtn = e.target.closest('[data-imdb-id]')
+    if (!toggleBtn) return
+
+    const { imdbId } = toggleBtn.dataset
+    toggleWatchList(imdbId)
+})

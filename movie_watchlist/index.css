@@ -173,7 +173,7 @@ body {
 }
 
 .movie-header > h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .movie-subheader {
@@ -183,9 +183,22 @@ body {
     width: 25vw;
 }
 
-.movie-subheader > a {
+
+
+.movie-subheader > button {
+    font-size: inherit;
+    border: none;
+    background-color: #121212;
     color: white;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+
+}
+
+.movie-subheader > button > img {
+    margin-right: 0.5em;
+    width: 16px;
 }
 
 .movie-plot {
