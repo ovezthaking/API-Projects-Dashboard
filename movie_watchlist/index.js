@@ -29,12 +29,15 @@ const fetchSearch = async (value) => {
 const toggleWatchList = async (id) => {
     const res = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${id}&plot=short`)
     const moviesData = await res.json()
+    const btn = document.querySelector(`[data-imdb-id="${id}"]`)
 
     if (watchlist.find(movie => movie.imdbID === id)){
         watchlist = watchlist.filter(movie => movie.imdbID !== id)
+        btn.innerHTML = '<img src="img/add.png" alt="Toggle watchlist icon"> Watchlist'
     } 
     else {
         watchlist.push(moviesData)
+        btn.innerHTML = '<img src="img/remove.png" alt="Toggle watchlist icon"> Watchlist'
     }
     localStorage.setItem('watchlist', JSON.stringify(watchlist))
 }
