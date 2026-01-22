@@ -39,6 +39,7 @@ const toggleWatchList = async (id) => {
         watchlist.push(moviesData)
         btn.innerHTML = '<img src="img/remove.png" alt="Toggle watchlist icon"> Watchlist'
     }
+    
     localStorage.setItem('watchlist', JSON.stringify(watchlist))
 }
 
