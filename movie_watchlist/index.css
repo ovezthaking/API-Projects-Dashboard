@@ -30,6 +30,7 @@ body {
         rgba(0, 0, 0, 0.75),
         rgba(0, 0, 0, 0.85)
     );
+    height: 30vh;
 }
 
 /* TOP SECTION */
@@ -46,6 +47,12 @@ body {
     justify-content: space-between;
     align-items: center;
     text-shadow: 1px 1px 5px gray;
+}
+
+.header-text > p > a, .header-text > p {
+
+    text-decoration: none;
+    color: inherit;
 }
 
 .top h1 {
@@ -113,4 +120,8 @@ body {
 .empty-state > p {
     font-weight: bolder;
     color: #2E2E2F;
+}
+
+.empty-text {
+    margin-top: 30vh;
 }
