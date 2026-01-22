@@ -6,32 +6,24 @@ const fetchSearch = async (value) => {
         const data = await res.json()
 
         if (data.Response == 'False') {
-            console.log('nie da sie znalezc')
             return 'Unable to find what you’re looking for. Please try another search.'
         }
         else if (data.Response == 'True'){
-            console.log(data.Search)
-            return data.Search
+            const moviesArray = []
+
+            for (movie of data.Search){
+                const detailedRes = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}&plot=short`)
+                const moviesData = await detailedRes.json()
+                moviesArray.push(moviesData)
+            }
+
+            return moviesArray
         }
     } catch (err) {
         console.error('error: ', err)
     }   
 }
 
-const fetchDetailed = async (movieArr) => {
-    const arr = await fetchSearch(movieArr)
-    if (typeof(arr) === 'string'){
-        return arr
-    }
-    const movies = await Promise.all(arr.map(async (movie) => {
-        const res = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}&plot=short`)
-        const movieData = await res.json()
-
-        console.log('Szczegółowe dane: ' ,movieData)
-        return movieData
-    }))
-    return movies
-}
 
 document.addEventListener('submit', async (e) => {
     const content = document.querySelector('.content')
@@ -39,20 +31,35 @@ document.addEventListener('submit', async (e) => {
     document.querySelector('.empty-state').classList.add('unvisible')
     content.classList.remove('unvisible')
     const data = await fetchSearch(document.querySelector('input').value)
-    const moviesArray = await fetchDetailed(data)
-    console.log(data)
+    
     if (typeof(data) == 'string'){
         content.innerHTML = `<p class='unable-find'>${data}</p>`
     }
     else {
-        console.log('Po addevent', moviesArray)
-        content.innerHTML = '';
-        moviesArray.forEach(movie => {
-            // const { Poster, Title, Year}
+        content.innerHTML = ''
+
+        data.forEach(movie => {
+            const { Poster, Title, imdbRating, Runtime, Genre, Plot } = movie
             content.innerHTML += `
               <div class="results">
-                <img src="${movie.Poster}" alt="">
+                <img src="${Poster}" alt="">
+                <div>
+                    <div class="movie-header">
+                        <h2>${Title}<h2>
+                        <p>${imdbRating}</p>
+                    </div>
+                    <div>
+                        <p>${Runtime}</p>
+                        <p>${Genre}</p>
+                        <a href="">+ Watchlsit </a>
+                    </div>
+                    <div>
+                        <p> ${Plot} </p>
+                    </div>
+                </div>
+                </hr>
               </div>
+              
             `
         })
     }

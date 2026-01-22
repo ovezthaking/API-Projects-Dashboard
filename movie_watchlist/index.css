@@ -142,5 +142,17 @@ body {
 }
 
 .results {
-    
+    margin-top: 10vh;
+    display: flex;
+    justify-self: center;
+    width: 50vw;
+}
+
+.results > img {
+    height: 40vh;
+}
+
+.movie-header {
+    display: flex;
+    margin: 0.5em;
 }
