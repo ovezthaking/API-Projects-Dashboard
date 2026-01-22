@@ -45,19 +45,18 @@ document.addEventListener('submit', async (e) => {
                 <img src="${Poster}" alt="">
                 <div>
                     <div class="movie-header">
-                        <h2>${Title}<h2>
-                        <p>${imdbRating}</p>
+                        <h2>${Title}</h2>
+                        <p>⭐${imdbRating}</p>
                     </div>
-                    <div>
+                    <div class="movie-subheader">
                         <p>${Runtime}</p>
                         <p>${Genre}</p>
-                        <a href="">+ Watchlsit </a>
+                        <a href="">+ Watchlist </a>
                     </div>
-                    <div>
+                    <div class="movie-plot">
                         <p> ${Plot} </p>
                     </div>
                 </div>
-                </hr>
               </div>
               
             `
