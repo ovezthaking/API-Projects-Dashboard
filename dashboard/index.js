@@ -19,17 +19,22 @@ const renderBackground = async () => {
 
 
 const renderCrypto = async () => {
-    try {
-        const res = await fetch('')
-        const data = await res.json()
-        console.log(data)
-    } catch (e) {
-        console.error('Error fetching crypto', e)
-    }
-    finally {
+    const coinList = ['bitcoin', 'dogecoin', 'ethereum', 'litecoin']
+    for (let coin of coinList){
+        try {
+            const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}`)
+            const data = await res.json()
+            console.log(data)
+        } catch (e) {
+            console.error(`Error fetching ${coin} data: `, e)
+        }
+        finally {
 
+        }
     }
+    
 }
 
 
 renderBackground()
+renderCrypto()
