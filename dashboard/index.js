@@ -70,6 +70,8 @@ navigator.geolocation.getCurrentPosition(position => {
             const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
             document.getElementById('weather').innerHTML = `
                 <img src='${iconUrl}' alt ='Weather icon' />
+                <p> ${Math.round(data.main.temp)}°C</p>
+                <p> ${data.name} </p>
             `
         })
         .catch(e => console.error('Error getting weather data: ', e))
