@@ -1,13 +1,11 @@
-let imgUrl = ''
-author = ''
-
-
 const renderBackground = async () => {
+    let imgUrl = ''
+    let author = ''
+
     try {
         const res = await fetch('https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature')
         const data = await res.json()
         imgUrl = await data.urls.full
-        console.log(imgUrl)
 
         author = data.user.name
     } catch (e) {
@@ -22,20 +20,31 @@ const renderBackground = async () => {
 
 
 const renderCrypto = async () => {
-    const coinList = ['bitcoin', 'dogecoin', 'ethereum', 'litecoin']
-    for (let coin of coinList){
-        try {
-            const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}`)
-            const data = await res.json()
-            console.log(data)
-        } catch (e) {
-            console.error(`Error fetching ${coin} data: `, e)
-        }
-        finally {
+    let resultTop = ''
+    let resultBottom = ''
 
-        }
+    try {
+        const res = await fetch(`https://api.coingecko.com/api/v3/coins/dogecoin`)
+        const data = await res.json()
+        
+        resultTop = `
+            <img src=${data.image.small} />
+            <span> ${data.name} </span>
+        `
+
+        resultBottom = `
+            <p>🎯: ${data.market_data.current_price.pln} PLN</p>
+            <p>👆: ${data.market_data.high_24h.pln} PLN</p>
+            <p>👇: ${data.market_data.low_24h.pln} PLN</p>
+        `
+
+    } catch (e) {
+        console.error(`Error fetching coin data: `, e)
     }
-    
+    finally {
+        document.getElementById('crypto-top').innerHTML += resultTop
+        document.getElementById('crypto').innerHTML += resultBottom
+    }
 }
 
 
