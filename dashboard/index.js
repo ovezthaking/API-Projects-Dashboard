@@ -11,6 +11,7 @@ const renderBackground = async () => {
     } catch (e) {
         imgUrl = 'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         author = 'Benjamin Voros'
+        console.error('Error fetching background data: ', e)
     }
     finally {
         document.body.style.backgroundImage = `url('${imgUrl}')`
@@ -48,5 +49,14 @@ const renderCrypto = async () => {
 }
 
 
+const renderTime = () => {
+    const date = new Date();
+    const time = date.toLocaleTimeString("en-us", {timeStyle: "short"})
+
+    document.querySelector('.time').textContent = time
+}
+
+
 renderBackground()
 renderCrypto()
+setInterval(renderTime, 1000);
