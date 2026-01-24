@@ -13,7 +13,7 @@ const fetchSearch = async (value) => {
             const moviesArray = []
 
             for (movie of data.Search){
-                const detailedRes = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}&plot=short`)
+                const detailedRes = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}&plot=short`)
                 const moviesData = await detailedRes.json()
                 moviesArray.push(moviesData)
             }
@@ -27,7 +27,7 @@ const fetchSearch = async (value) => {
 
 
 const toggleWatchList = async (id) => {
-    const res = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${id}&plot=short`)
+    const res = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${id}&plot=short`)
     const moviesData = await res.json()
     const btn = document.querySelector(`[data-imdb-id="${id}"]`)
 
